@@ -1,0 +1,134 @@
+\documentclass[10pt]{beamer}
+% Optionally specify the width and sidebar position
+% \usetheme[left,width=15mm]{alxprc}
+\usetheme{alxprc}
+
+\usepackage{alxprc}% Local package, see 
+\usepackage{graphicx}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+
+\graphicspath{{figures/}}
+
+\title{Test Beamer Presentation}
+% Can put an actual subtitle here, I like to put the meeting/conference
+\subtitle{Important Conference 2013}
+\date{\today}
+
+% All contributors for long list, speaker for short
+\author[A.~Author]{%
+  \emph{An Author}\inst{1}\and
+  Extra Author\inst{2}\and
+  Final Author\inst{3}
+}
+% All institutes for long list, speaker's for short
+\institute[University of A]{%
+  \inst{1} University of A\and
+  \inst{2} University of B\and
+  \inst{3} University of C
+}
+% Change for your own institution
+\logo{\includegraphics[width=2cm,keepaspectratio]{manchester_logo_colour}}
+
+\begin{document}
+
+% Center the frame contents when hiding the sidebar (with plain)
+% http://cern.ch/go/87kZ
+\begingroup
+  \makeatletter
+  \setlength{\hoffset}{0.5\beamer@sidebarwidth}
+  \makeatother
+
+  \begin{frame}[plain]
+    \titlepage
+    \centering \insertlogo
+  \end{frame}
+
+  \begin{frame}[plain]
+    \tableofcontents
+  \end{frame}
+\endgroup
+
+\section{Introduction}
+\begin{frame}{My Title}
+  All very interesting stuff here.
+  \begin{itemize}
+    \item Of this thing,
+    \item And that thing,
+    \item Others.
+  \end{itemize}
+  We conclude, with some excitement,
+  \begin{alertblock}{Gamma function}
+    \[
+      \Gamma(z) = \int^{\infty}_{0} t^{z}e^{-t}\frac{\mathrm{d}t}{t}
+    \]
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Other Slide}
+  \begin{columns}
+    \column{0.5\textwidth}
+    Here we are.
+    \column{0.5\textwidth}
+    Once again.
+  \end{columns}
+  \begin{block}{Quite a block}
+    Quite a block indeed.
+  \end{block}
+\end{frame}
+
+% Require these for the TikZ demo
+% Stolen from http://www.texample.net/tikz/examples/beamer-arrows/
+\tikzstyle{every picture}+=[remember picture]
+\everymath{\displaystyle}
+
+\subsection{Graphics}
+\begin{frame}{Being all fancy with TikZ}
+  This interesting equation is well worth talking about for three reasons
+  \[
+    \Gamma(z) =
+      \tikz[baseline]{
+        \node[fill=red!20,anchor=base] (t1)
+        {$\int^{\infty}_{0}$};
+      }
+      \tikz[baseline]{
+        \node[fill=green!20,anchor=base] (t2)
+        {$t^{z}e^{-t}$};
+      }
+      \tikz[baseline]{
+        \node[fill=blue!20,anchor=base] (t3)
+        {$\frac{\mathrm{d}t}{t}$};
+      }
+  \]
+  \begin{itemize}
+    \item Quite scary
+      \tikz\node [coordinate] (n1) {};
+    \item Complex numbers
+      \tikz\node [coordinate] (n2) {};
+    \item You need to go to Wikipedia about it
+      \tikz\node [coordinate] (n3) {};
+  \end{itemize}
+
+  \begin{tikzpicture}[overlay]
+    \path[->,thick,red]   (n1) edge [out=0,in=270] (t1);
+    \path[->,thick,green] (n2) edge [out=0,in=270] (t2);
+    \path[->,thick,blue]  (n3) edge [bend right] (t3);
+  \end{tikzpicture}
+\end{frame}
+
+\appendix
+
+\begin{frame}[c]
+  \begin{center}
+    \Huge Backup
+  \end{center}
+\end{frame}
+
+\begin{frame}{Backup One}
+  \begin{alertblock}{Note}
+    The slide numbers are reset for the backup slides.
+  \end{alertblock}
+\end{frame}
+
+\end{document}
+

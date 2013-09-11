@@ -1,0 +1,61 @@
+% beamerthemealxprc.sty
+%
+% My theme, layout and colour, for Beamer.
+% Options:
+%   * width=X -- Width of the sidebar (default: width=2cm)
+%   * left/right -- Where to place the sidebar (default: right)
+%
+% (c) Alex Pearce <alex@alexpearce.me>
+% LPPL LaTeX Public Project License
+%
+
+\PassOptionsToPackage{right}{beamerouterthemesidebar}
+\PassOptionsToPackage{width=2cm}{beamerouterthemesidebar}
+
+\DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{left}{\PassOptionsToPackage{left}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{right}{\PassOptionsToPackage{right}{beamerouterthemesidebar}}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+% Sidebar on right, no gap between it and the frame top
+\useoutertheme[height=0cm]{sidebar}
+% Flat, circular bullets
+\setbeamertemplate{items}[circle]
+% Rounded block corners
+\setbeamertemplate{blocks}[rounded]
+% Frame number in the footer
+\setbeamertemplate{footline}[frame number]
+% Remove navigation
+\beamertemplatenavigationsymbolsempty
+
+% I am a professional, and so should use professional fonts
+\usefonttheme{professionalfonts}
+
+% Define theme colours
+\definecolor{mBody}{RGB}{34,34,34}
+\definecolor{mPurple}{RGB}{102,0,153}
+\definecolor{mRed}{RGB}{255 0,0}
+
+% Structure colour sets the overall tone
+\setbeamercolor{structure}{fg=mPurple}
+% Copy
+\setbeamercolor{normal text}{fg=mBody}
+\setbeamercolor{alerted text}{fg=mRed!80}
+% Sidebar background
+\setbeamertemplate{sidebar canvas \beamer@sidebarside}[vertical shading][top=structure.fg!20,bottom=structure.fg!10]
+% Blocks
+\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+\setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!20!bg}
+\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!20!bg}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!50!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
+
+\mode
+<all>
+
+%%
+%% End of file `beamerthemealxprc.sty`.
+
