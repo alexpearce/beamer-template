@@ -1,15 +1,15 @@
-% beamerthemealxprc.sty
+% beamerthemealxprcv1.sty
 %
 % My theme, layout and colour, for Beamer.
 % Options:
 %   * width=X -- Width of the sidebar (default: width=2.2cm)
-%   * left/right -- Where to place the sidebar (default: left)
+%   * left/right -- Where to place the sidebar (default: right)
 %
 % (c) Alex Pearce <alex@alexpearce.me>
 % LPPL LaTeX Public Project License
 %
 
-\PassOptionsToPackage{left}{beamerouterthemesidebar}
+\PassOptionsToPackage{right}{beamerouterthemesidebar}
 \PassOptionsToPackage{width=2.2cm}{beamerouterthemesidebar}
 
 \DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemesidebar}}
@@ -30,14 +30,10 @@
 % Remove navigation
 \beamertemplatenavigationsymbolsempty
 
-% I am a professional, and so should use professional fonts
-% \usefonttheme{professionalfonts}
-
 % Define theme colours
 \definecolor{mBody}{RGB}{34,34,34}
-\definecolor{mPurple}{RGB}{77,67,113}
+\definecolor{mPurple}{RGB}{102,0,153}
 \definecolor{mRed}{RGB}{255 0,0}
-\definecolor{mWhite}{RGB}{245,245,247}
 
 % Structure colour sets the overall tone
 \setbeamercolor{structure}{fg=mPurple}
@@ -47,13 +43,8 @@
 \setbeamercolor{alerted text}{fg=mRed!80}
 
 % Sidebar background
-\setbeamertemplate{sidebar canvas \beamer@sidebarside}[vertical shading][top=structure.fg,bottom=structure.fg]
-
-% Sidebar fonts
-\setbeamercolor{title in sidebar}{fg=mWhite!80!structure}
-\setbeamercolor{author in sidebar}{fg=mWhite!60!structure}
-\setbeamercolor{section in sidebar}{fg=mWhite,bg=black!10!structure}
-\setbeamercolor{subsection in sidebar}{fg=mWhite!80,bg=black!10!structure}
+% Using `\setbeamercolor{sidebar}{bg=..} doesn't colour the footer
+\setbeamertemplate{sidebar canvas \beamer@sidebarside}[vertical shading][top=structure.fg!20,bottom=structure.fg!20]
 
 % Blocks
 \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
@@ -67,5 +58,4 @@
 \pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{%
   color(0pt)=(lower.bg); color(4pt)=(lower.bg); color(4pt)=(upper.bg)}
 
-\mode
-<all>
+\mode<all>

@@ -2,7 +2,9 @@
 \documentclass[10pt,aspectratio=1610]{beamer}
 % Optionally specify the width and sidebar position
 % \usetheme[right,width=2cm]{alxprc}
-\usetheme{alxprcv1}
+% Use the old style with
+% \usetheme{alxprcv1}
+\usetheme{alxprc}
 
 % Text encoding and font stuff
 \usepackage[utf8]{inputenc}
@@ -63,7 +65,8 @@
 % https://tex.stackexchange.com/questions/24402
 \begingroup
   \makeatletter
-  \setlength{\hoffset}{0.5\beamer@sidebarwidth}
+  % If using a right-aligned sidebar, change -0.5 to 0.5
+  \setlength{\hoffset}{-0.5\beamer@sidebarwidth}
   \makeatother
 
   \begin{frame}[plain]
