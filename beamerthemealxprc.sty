@@ -2,7 +2,7 @@
 %
 % My theme, layout and colour, for Beamer.
 % Options:
-%   * width=X -- Width of the sidebar (default: width=2cm)
+%   * width=X -- Width of the sidebar (default: width=2.2cm)
 %   * left/right -- Where to place the sidebar (default: right)
 %
 % (c) Alex Pearce <alex@alexpearce.me>
@@ -10,7 +10,7 @@
 %
 
 \PassOptionsToPackage{right}{beamerouterthemesidebar}
-\PassOptionsToPackage{width=2cm}{beamerouterthemesidebar}
+\PassOptionsToPackage{width=2.2cm}{beamerouterthemesidebar}
 
 \DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemesidebar}}
 \DeclareOptionBeamer{left}{\PassOptionsToPackage{left}{beamerouterthemesidebar}}
@@ -30,9 +30,6 @@
 % Remove navigation
 \beamertemplatenavigationsymbolsempty
 
-% I am a professional, and so should use professional fonts
-\usefonttheme{professionalfonts}
-
 % Define theme colours
 \definecolor{mBody}{RGB}{34,34,34}
 \definecolor{mPurple}{RGB}{102,0,153}
@@ -40,11 +37,15 @@
 
 % Structure colour sets the overall tone
 \setbeamercolor{structure}{fg=mPurple}
+
 % Copy
 \setbeamercolor{normal text}{fg=mBody}
 \setbeamercolor{alerted text}{fg=mRed!80}
+
 % Sidebar background
-\setbeamertemplate{sidebar canvas \beamer@sidebarside}[vertical shading][top=structure.fg!20,bottom=structure.fg!10]
+% Using `\setbeamercolor{sidebar}{bg=..} doesn't colour the footer
+\setbeamertemplate{sidebar canvas \beamer@sidebarside}[vertical shading][top=structure.fg!20,bottom=structure.fg!20]
+
 % Blocks
 \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
 \setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!20!bg}
@@ -53,9 +54,8 @@
 \setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!50!bg}
 \setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
 
-\mode
-<all>
+% Remove fade from block title bg colour to body background colour
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{%
+  color(0pt)=(lower.bg); color(4pt)=(lower.bg); color(4pt)=(upper.bg)}
 
-%%
-%% End of file `beamerthemealxprc.sty`.
-
+\mode<all>

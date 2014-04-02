@@ -1,13 +1,38 @@
-\documentclass[10pt]{beamer}
+% Widescreen slides
+\documentclass[10pt,aspectratio=1610]{beamer}
 % Optionally specify the width and sidebar position
-% \usetheme[left,width=15mm]{alxprc}
-\usetheme{alxprc}
+% \usetheme[right,width=2cm]{alxprc}
+\usetheme{alxprcv1}
 
-\usepackage{alxprc}% Local package, see 
+% Text encoding and font stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+\usepackage{alxprc}
+% Nicer tables
+\usepackage{booktabs}
 \usepackage{graphicx}
+% Reset page number for backup slides
 \usepackage{appendixnumberbeamer}
-\usepackage{tikz}
+% Use `\num{987654321 \pm 4321}` for nice number formatting
+% Use `\SI{42}{\volts\per\metre}` for easier units
+\usepackage[separate-uncertainty]{siunitx}
 
+% Define some helpful HEP units
+% Use like `\SI{3.14}{\perfb}` to get `3.14 fb^{-1}`
+\DeclareSIUnit\MeV{\mega\eV}
+\DeclareSIUnit\GeV{\mega\eV}
+\DeclareSIUnit\perpb{\per\pico\barn}
+\DeclareSIUnit\perfb{\per\femto\barn}
+
+% Colour URLs but not internal links
+\hypersetup{colorlinks=true,linkcolor=,urlcolor=structure}
+
+% Look for graphics in the `figures/` directory
+% I try to have all my figures as PDFs
 \graphicspath{{figures/}}
 
 \title{Test Beamer Presentation}
@@ -16,10 +41,12 @@
 \date{\today}
 
 % All contributors for long list, speaker for short
+% Give superscript some room with a thin space `\,`
+% I like to highlight the actual speaker somehow, e.g. italicise them
 \author[A.~Author]{%
-  \emph{An Author}\inst{1}\and
-  Extra Author\inst{2}\and
-  Final Author\inst{3}
+  \emph{An Author}\,\inst{1}\and
+  Extra Author\,\inst{2}\and
+  Final Author\,\inst{3}
 }
 % All institutes for long list, speaker's for short
 \institute[University of A]{%
@@ -33,7 +60,7 @@
 \begin{document}
 
 % Center the frame contents when hiding the sidebar (with plain)
-% http://cern.ch/go/87kZ
+% https://tex.stackexchange.com/questions/24402
 \begingroup
   \makeatletter
   \setlength{\hoffset}{0.5\beamer@sidebarwidth}
@@ -44,9 +71,10 @@
     \centering \insertlogo
   \end{frame}
 
-  \begin{frame}[plain]
-    \tableofcontents
-  \end{frame}
+  % If you want a table of contents
+  % \begin{frame}[plain]
+  %   \tableofcontents
+  % \end{frame}
 \endgroup
 
 \section{Introduction}
@@ -60,70 +88,44 @@
   We conclude, with some excitement,
   \begin{alertblock}{Gamma function}
     \[
-      \Gamma(z) = \int^{\infty}_{0} t^{z}e^{-t}\frac{\mathrm{d}t}{t}
+      \Gamma(z) = \int^{\infty}_{0} t^{z}e^{-t}\frac{\text{d}t}{t}
     \]
   \end{alertblock}
 \end{frame}
 
+\subsection{Subsection demo}
+\begin{frame}{Subsection demo}
+  \begin{itemize}
+    \item Subsections are presented nicely in the sidebar
+    \item The sections are used to create a PDF table of contents
+  \end{itemize}
+\end{frame}
+
+\section{Column demo}
 \begin{frame}{Other Slide}
   \begin{columns}
     \column{0.5\textwidth}
-    Here we are.
+    Left column.
     \column{0.5\textwidth}
-    Once again.
+    Right column.
   \end{columns}
+  % Use vertical spacing to prevent crowding
+  \vspace{0.5cm}
   \begin{block}{Quite a block}
     Quite a block indeed.
   \end{block}
 \end{frame}
 
-% Require these for the TikZ demo
-% Stolen from http://www.texample.net/tikz/examples/beamer-arrows/
-\tikzstyle{every picture}+=[remember picture]
-\everymath{\displaystyle}
-
-\subsection{Graphics}
-\begin{frame}{Being all fancy with TikZ}
-  This interesting equation is well worth talking about for three reasons
-  \[
-    \Gamma(z) =
-      \tikz[baseline]{
-        \node[fill=red!20,anchor=base] (t1)
-        {$\int^{\infty}_{0}$};
-      }
-      \tikz[baseline]{
-        \node[fill=green!20,anchor=base] (t2)
-        {$t^{z}e^{-t}$};
-      }
-      \tikz[baseline]{
-        \node[fill=blue!20,anchor=base] (t3)
-        {$\frac{\mathrm{d}t}{t}$};
-      }
-  \]
-  \begin{itemize}
-    \item Quite scary
-      \tikz\node [coordinate] (n1) {};
-    \item Complex numbers
-      \tikz\node [coordinate] (n2) {};
-    \item You need to go to Wikipedia about it
-      \tikz\node [coordinate] (n3) {};
-  \end{itemize}
-
-  \begin{tikzpicture}[overlay]
-    \path[->,thick,red]   (n1) edge [out=0,in=270] (t1);
-    \path[->,thick,green] (n2) edge [out=0,in=270] (t2);
-    \path[->,thick,blue]  (n3) edge [bend right] (t3);
-  \end{tikzpicture}
-\end{frame}
-
 \appendix
 
+\section{Backup}
 \begin{frame}[c]
   \begin{center}
     \Huge Backup
   \end{center}
 \end{frame}
 
+\section{First backup}
 \begin{frame}{Backup One}
   \begin{alertblock}{Note}
     The slide numbers are reset for the backup slides.
